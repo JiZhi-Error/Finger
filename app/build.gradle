@@ -1,0 +1,57 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+
+    defaultConfig {
+        applicationId "com.jizhi.optheme.finger"
+        minSdkVersion 16
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+    }
+    signingConfigs {
+        releaseConfig {
+            storeFile file("../jizhi.jks")
+            storePassword KEYSTORE_PASS
+            keyAlias ALIAS_NAME
+            keyPassword ALIAS_PASS
+        }
+    }
+    // 取消png验证
+    aaptOptions { cruncherEnabled = false }
+
+    buildTypes {
+        debug {
+            zipAlignEnabled false
+            debuggable true
+            minifyEnabled false //是否混淆
+            shrinkResources false //是否去除无效的资源文件
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.releaseConfig
+        }
+        release {
+            // 混淆
+            zipAlignEnabled true
+            debuggable false
+            minifyEnabled true //是否混淆
+            shrinkResources false //是否去除无效的资源文件
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.releaseConfig
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.core:core-ktx:1.2.0'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+
+
+}
