@@ -50,9 +50,11 @@ android {
             variant.outputs.all {
                 //只处理生产版本
                 if (buildType.name == "release") {
+                    
+                    def createTimeLong = System.currentTimeMillis()
                     def createTime = new Date().format("YYYY-MM-dd", TimeZone.getTimeZone("GMT+08:00"))
                     // app包名称
-                    outputFileName = "v" + defaultConfig.versionName + "_" + createTime + ".optheme"
+                    outputFileName = "v" + defaultConfig.versionName + "_" + createTime +"_"+ createTimeLong + ".optheme"
                 }
             }
     }
