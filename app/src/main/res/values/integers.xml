@@ -2,4 +2,5 @@
 <resources>
     <integer name="anim_end_frame">49</integer>
     <integer name="anim_start_frame">0</integer>
+    <integer name="animIndex">0</integer>
 </resources>

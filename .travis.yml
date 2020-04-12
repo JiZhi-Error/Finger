@@ -1,0 +1,27 @@
+language: android
+sudo: false
+deploy:
+  provider: releases
+  api_key:
+    secure: ImRMsBUVzw1jJOHbLxmQ8dX2TI46OZTaTvTIF918sxRlpm/3tlXGBgkgvkH23nT3mcd43S5j2Q+jAQQP4cagrUo9BEtdkxQH50R0rhihotnESjb3oQYOY6Ze5rPd0x2MtKZg3Ap0iEEqqMSznB0lxYIDsboE66F5BbMGGIXWeMoIpUwAyrhRQx6NkgOHL6cMKojPSOTD6Irv3IcFzhHCiLg6gYiUj38jydSzkTU8f8e5AKvckqEgzVaK01ru69I3m7nqX9nTuSl5n8suvDSHJz7TvT9YsG+Dh9D0tr6JzrQ88hLAbLQxUPDqx4C6EJq1m0CGswn4M44q3BObQaSPs7wYTiHeAd9EJJypebybxjehV7/mWRRuuCBq5/NQhjVd2aZFxAk1Z45EC6lAkeh2c1KOmhHrWMwnmczzzOJfBSGjMw/o8vYEiYCcL5L79xQKmX3zF+aeCzxTABc4EE7PE/xnvPelME2cfbRFG1yJrcl0PbGT6xOoQxAeXw96r44XXmb3ODHlUGmyRR+t/+Gr5KZHKTWdRqk7pLOjHN0swuQsmEQhW843TgqxezIhSSkrEcIRuhhj6GPYJYpZqRGjhoKyLEFEjjVpeFx+X/cwqMwoQoWSV2kn0Rd19I1btmOK4zXnkh8LVN+o6TFCiHl2endb6R35KUFWeCf5gSMjGm4=
+  file: app/build/outputs/apk/release/app-release.apk
+  # 避免 Travis CI在部署之前清空生成的APK文件
+  skip_cleanup: true
+  on:
+    repo: jizhihh/Finger
+    all_branches: true
+    tags: true
+android:
+  components:
+  - build-tools-29.0.3
+  - android-29
+  - extra-android-m2repository
+  - extra-android-support
+before_script:
+- chmod +x gradlew
+script:
+- "./gradlew assembleRelease"
+before_install:
+  - openssl aes-256-cbc -K $encrypted_b4de652e6f20_key -iv $encrypted_b4de652e6f20_iv
+    -in jizhi.jks.enc -out jizhi.jks -d
+
