@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <integer name="anim_end_frame">70</integer>
+    <integer name="anim_end_frame">131</integer>
     <integer name="anim_start_frame">0</integer>
-    <integer name="animIndex">23</integer>
+    <integer name="animIndex">24</integer>
 </resources>
